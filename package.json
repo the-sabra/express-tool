@@ -1,0 +1,28 @@
+{
+  "name": "express-cli",
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "exc": "./bin/ex-cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "the-sabra",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "chalk-animation": "^2.0.3",
+    "commander": "^11.0.0",
+    "figlet": "^1.5.2",
+    "gradient-string": "^2.0.0",
+    "inquirer": "^8.2.0",
+    "link": "^1.5.1",
+    "node-emoji": "^2.1.0",
+    "ora": "^6.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

@@ -1,0 +1,4 @@
+/-v
+/.vscode
+/node_modules
+/tests
