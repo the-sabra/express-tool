@@ -1,7 +1,11 @@
 import * as fs from "fs/promises";
 import { existsSync } from "fs";
-import ora from "ora";
-import { installPackagesWithNpm } from "./executeCommands.js";
+import ora, { spinners } from "ora";
+import {
+  npmInstaller,
+  yarnInstaller,
+  pnpmInstaller,
+} from "./executeCommands.js";
 
 const data = "console.log('hello world')";
 
@@ -13,23 +17,33 @@ export let projectFiles = async (
   language,
   packageObject
 ) => {
+  const CreatingSpinner = ora("creating project...");
+  const installingSpinner = ora("installing dependencies...");
   try {
-    
-    const spinner = ora("creating project...").start();
+    CreatingSpinner.start();
     const path = `${projectName}/app.${language}`;
-  
+
     await fs.mkdir(projectName);
-  
+
     await fs.writeFile(path, data);
-  
+
+    //to create a new package.json file
     await packageJsonFile(projectName, packageObject);
-    spinner.succeed("files created");
-    const spinner2 = ora("installing dependencies...").start();
-    await installPackagesWithNpm(projectName);
-    await sleep();
-    spinner2.succeed("dependencies installed 🔥");
+    CreatingSpinner.succeed("files created");
+
+    installingSpinner.start();
+    if (packageManger === "npm") {
+      await npmInstaller(projectName);
+    } else if (packageManger === "yarn") {
+      await yarnInstaller(projectName);
+    } else if (packageManger === "pnpm") {
+      await pnpmInstaller(projectName);
+    }
+    installingSpinner.succeed("dependencies installed 🔥");
   } catch (error) {
-    throw new Error(error);
+    CreatingSpinner.stop();
+    installingSpinner.stop();
+    throw error;
   }
 };
 
@@ -40,6 +54,6 @@ const packageJsonFile = async (dir, packageObject) => {
       JSON.stringify(packageObject, null, 2)
     );
   } catch (e) {
-    console.log(e);
+    new Error(e);
   }
 };

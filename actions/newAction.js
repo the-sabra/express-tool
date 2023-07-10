@@ -19,6 +19,7 @@ let packageJs = {
   dependencies: {
     debug: "~2.6.9",
     express: "~4.17.1",
+    cors: "^2.8.5",
   },
   devDependencies: {
     nodemon: "^3.0.1",
@@ -34,6 +35,7 @@ let packageTs = {
   dependencies: {
     debug: "~2.6.9",
     express: "~4.17.1",
+    cors: "^2.8.5",
   },
   devDependencies: {
     nodemon: "^3.0.1",
@@ -42,7 +44,8 @@ let packageTs = {
     "@types/node": "18.15.11",
   },
 };
-let packageUses;
+//This variable stores the object to use in creating the file function
+let packageUse;
 export let newAction = async (name, options) => {
   if (!name) {
     projectName = await getProjectName();
@@ -61,15 +64,15 @@ export let newAction = async (name, options) => {
 
   if (options.javascript) {
     language = "js";
-    packageUses = packageJs;
+    packageUse = packageJs;
   } else if (options.typescript) {
     language = "ts";
-    packageUses = packageTs;
+    packageUse = packageTs;
   } else {
     language = await selectLanguage();
   }
 
   const packageManger = await selectPackage();
-  
-  projectFiles(projectName, packageManger, language, packageUses);
+
+  projectFiles(projectName, packageManger, language, packageUse);
 };
