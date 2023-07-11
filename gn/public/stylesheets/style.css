@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  background-color: #0e1012;
+  font-family: "Cairo", sans-serif;
+}
+div {
+  color: aliceblue;
+  font-size: 15px;
+  text-align: center;
+}
+
+.express {
+  font-size: 45px;
+}
+
+.express a {
+  color: aliceblue;
+  text-decoration: none;
+}

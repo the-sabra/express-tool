@@ -1,0 +1,17 @@
+{
+  "name": "gn",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start:dev": "nodemon app.js",
+    "start": "node app.js "
+  },
+  "dependencies": {
+    "debug": "~2.6.9",
+    "express": "~4.17.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
