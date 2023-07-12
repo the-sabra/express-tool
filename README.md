@@ -1,4 +1,4 @@
-# express-cli
+# express-tool
 
 **NOTE:** `et` abbreviation to `express-tool`
 
