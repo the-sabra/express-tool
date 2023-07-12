@@ -2,7 +2,7 @@
 import { newAction } from "../actions/newAction.js";
 import { Command } from "commander";
 const program = new Command();
-program.name("ecl").version("0.0.1");
+program.name("et").version("1.0.0");
 
 program
   .command("new [project-name]")

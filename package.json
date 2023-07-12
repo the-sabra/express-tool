@@ -1,9 +1,9 @@
 {
-  "name": "express-cli",
+  "name": "express-tool",
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "ecl": "./bin/ex-cli.js"
+    "et": "./bin/ex-cli.js"
   },
   "type": "module",
   "scripts": {
