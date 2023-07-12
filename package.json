@@ -1,16 +1,30 @@
 {
   "name": "express-tool",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "author": "omar sabra <omarsabra509@gmail.com>",
+  "keywords": [
+    "command-line",
+    "express-es6-cli",
+    "express-starter",
+    "express-cli",
+    "tool",
+    "express",
+    "Express",
+    "express-tool",
+    "Express-tool",
+    "express-cli"
+  ],
+  "description": "This CLI tool helps you to create files for Express framework.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/the-sabra/express-tool"
+  },
+  "homepage": "https://github.com/the-sabra/express-tool#readme",
+  "license": "(MIT)",
   "bin": {
-    "et": "./bin/ex-cli.js"
+    "et": "./bin/ex-tool.js"
   },
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "the-sabra",
-  "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.0.0",

@@ -18,7 +18,9 @@ go to the directory you need to generate the project and execute this command
 new|n [options] [project-name]
 ```
 
-you can use the option your new only and he gives you some question
+
+**NOTE:** You can only use new commands, and he gives you some questions. 
+
 
 ## Command Line Options
 
@@ -33,4 +35,4 @@ This generator can also be further configured with the following command line fl
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE.txt)
