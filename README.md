@@ -2,7 +2,7 @@
 
 **NOTE :** `ecl` abbreviation to `express-cli`
 
-You can run the command in `exc` to be simple. 😊
+You can run the command in `ecl` to be simple. 😊
 
 ## installation
 
@@ -27,7 +27,7 @@ This generator can also be further configured with the following command line fl
 
 ## new | n
 
--     -p, --package <type> to choose package manger you use    `exc new -p <type>`
+-     -p, --package <type> to choose package manger you use    `ecl new -p <type>`
 -     -js, --javascript  to create a project using JavaScript
 -     -ts, --typescript  to create a project using TypeScript
 -     -mjs, --ECMAScript to create project in JavaScript with ECMAScript Modules (JavaScript only)

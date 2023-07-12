@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "exc": "./bin/ex-cli.js"
+    "ecl": "./bin/ex-cli.js"
   },
   "type": "module",
   "scripts": {
