@@ -18,11 +18,12 @@ go to the directory you need to generate the project and execute this command
 new|n [options] [project-name]
 ```
 
-**NOTE:** You can only use new commands, and he gives you some questions.
 
-![example](./assets/command.gif)
+**NOTE:** You can only use new commands, and he gives you some questions. 
+
 
 ## Command Line Options
+
 This generator can also be further configured with the following command line flags.
 
 ## new | n
