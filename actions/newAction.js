@@ -1,9 +1,11 @@
 import { projectFiles } from "../utils/createProjectFiles.js";
 import { existsSync } from "fs";
+import chalk from "chalk";
 import {
   getProjectName,
   selectLanguage,
   selectPackage,
+  selectModuleType,
 } from "../utils/questions.js";
 import {
   packageCjs,
@@ -12,10 +14,11 @@ import {
 } from "../Templates/packagesTemp.js";
 let projectName;
 let language;
-// to get module type if CommonJs or ECMA in options
+// Get the module type, which is either CommonJS or ECMAScript, from the options.
 let moduleType;
-
-//This variable stores the object to use in creating the file function
+//This variable stores the package manager that the user uses
+let packageManger;
+//This variable stores the object create file function.
 let packageUse;
 export let newAction = async (name, options) => {
   try {
@@ -30,34 +33,77 @@ export let newAction = async (name, options) => {
       );
       process.exit(1);
     }
-    //check options get or not
+    //check options are uses or not
     if (Object.keys(options).length === 0) {
       language = await selectLanguage();
-      moduleType = "cjs";
+      if (language === "js") {
+        moduleType = await selectModuleType();
+        if (moduleType === "cjs") {
+          language = "js";
+          packageCjs.name = projectName; // set package.json name project as same as project name
+          packageUse = packageCjs;
+        } else {
+          language = "js"; //set language to js
+          packageEjs.name = projectName;
+          packageUse = packageEjs;
+        }
+      } else if (language === "ts") {
+        language = "ts"; //set language to ts
+        packageTs.name = projectName;
+        packageUse = packageTs;
+      }
     }
+
+    // Check which options the user uses.
     if (options.javascript && options.ECMAScript) {
       language = "js"; //set language to js
       packageEjs.name = projectName;
       packageUse = packageEjs;
       moduleType = "mjs";
-    } else if (options.javascript && options.ECMAScript == undefined) {
+    } else if (options.javascript && options.ECMAScript === undefined) {
       language = "js";
       packageCjs.name = projectName; // set package.json name project as same as project name
       packageUse = packageCjs;
       moduleType = "cjs";
-    } else if (options.typescript && options.ECMAScript == undefined) {
+    } else if (options.typescript && options.ECMAScript === undefined) {
       language = "ts"; //set language to ts
       packageTs.name = projectName;
       packageUse = packageTs;
     } else if (options.typescript && options.ECMAScript) {
-      throw new Error("this option only for js lang");
+      console.error("this option only for js lang");
+      process.exit(1);
     }
 
-    // TODO make Package options
-    const packageManger = await selectPackage();
+    if (options.package === undefined) {
+      packageManger = await selectPackage();
+    } else {
+      packageManger = options.package;
+    }
+    // check the user options
+    if (
+      packageManger !== "npm" &&
+      packageManger !== "yarn" &&
+      packageManger !== "pnpm"
+    ) {
+      console.error("package manger is incorrect 🤕");
+      process.exit(1);
+    }
 
-    projectFiles(projectName, packageManger, language, packageUse, moduleType);
+    await projectFiles(
+      projectName,
+      packageManger,
+      language,
+      packageUse,
+      moduleType
+    );
+
+    console.log(
+      ` run this command ${chalk.yellow(
+        `cd ${projectName}`
+      )}\n you can run project in dev mode by ${chalk.yellow("npm run dev")}`
+    );
   } catch (error) {
-    throw error;
+    console.error(`some thing wrong 🤕 ${error}`);
+    process.exit(1);
   }
 };

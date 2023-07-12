@@ -34,3 +34,16 @@ export let selectPackage = async () => {
   });
   return answer.package;
 };
+
+export let selectModuleType = async () => {
+  const answer = await inquirer.prompt({
+    name: "module",
+    type: "list",
+    message: "which Module type you love" + "❤️ " + " to use?",
+    choices: ["ECMAScript", "CommonJS"],
+  });
+  if (answer.module === "ECMAScript") {
+    return "mjs";
+  }
+  return "cjs";
+};

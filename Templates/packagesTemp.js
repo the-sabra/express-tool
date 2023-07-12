@@ -1,4 +1,4 @@
-export let packageCjs = {
+export const packageCjs = {
   name: "",
   version: "0.0.1",
   private: true,
@@ -14,7 +14,7 @@ export let packageCjs = {
     nodemon: "^3.0.1",
   },
 };
-export let packageEjs = {
+export const packageEjs = {
   name: "",
   version: "0.0.1",
   private: true,
@@ -32,7 +32,7 @@ export let packageEjs = {
   },
 };
 
-export let packageTs = {
+export const packageTs = {
   name: "",
   version: "0.0.1",
   private: true,

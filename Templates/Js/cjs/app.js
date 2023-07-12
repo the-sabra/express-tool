@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const errorController = require("./controllers/error");
 const cors = require("cors");
 const app = express();
 
@@ -10,21 +11,19 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use(express.static(path.join(__dirname, "public")));
-
+app.use(errorController.get404);
 // error middleware
 app.use(function (err, req, res, next) {
-
   console.log(err);
 
   res.status(err.status || 500);
-  res.sendFile('error')
+  res.sendFile("error");
 });
 
-
-app.listen(process.env.PORT || 3000,()=>{
-   console.log(`running in port ${process.env.PORT || 3000}`);
-})
+app.listen(process.env.PORT || 3000, () => {
+  console.log(`running in port ${process.env.PORT || 3000}`);
+});

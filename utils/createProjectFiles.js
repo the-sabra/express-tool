@@ -36,6 +36,7 @@ export let projectFiles = async (
 
     //to create a new package.json file
     await packageJsonFile(projectName, packageObject);
+
     CreatingSpinner.succeed("files created");
 
     installingSpinner.start();
@@ -68,7 +69,7 @@ async function packageJsonFile(dir, packageObject) {
 // ** [TODO] ** make this function to read dir and  write data from template to project file
 async function createTemplate(templatePath, projectPath) {
   try {
-    const files = await fs.readdir(templatePath); 
+    const files = await fs.readdir(templatePath);
     await fs.mkdir(projectPath);
     for (const file of files) {
       const filePath = path.join(templatePath, file);
