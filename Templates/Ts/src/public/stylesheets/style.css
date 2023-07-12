@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #0e1012;
+  font-family: "Cairo", sans-serif;
+}
+main {
+  color: aliceblue;
+  font-size: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+img{
+  width: 10px;
+  height: 10px;
+}
+
+main > a {
+  font-size: 3rem;
+  color: aliceblue;
+  text-decoration: none;
+  animation: neon-fade-in-out 4s infinite;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #434143,
+    0 0 70px #757275, 0 0 80px #434143, 0 0 100px #434143, 0 0 150px #434143;
+}
+@keyframes neon-fade-in-out {
+  0% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #434143;
+  }
+  100% {
+    text-shadow: none;
+  }
+}

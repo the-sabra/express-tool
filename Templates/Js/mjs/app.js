@@ -8,7 +8,7 @@ import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
-var app = express();
+const app = express();
 
 //Enable All CORS Requests
 app.use(cors());

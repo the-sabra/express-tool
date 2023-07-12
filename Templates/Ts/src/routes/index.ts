@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { __dirname } from "../app.js";
-const router = Router();
+import { rootDir } from "../app";
+var router = Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.sendFile('/public/index.html', {root: __dirname});
+  res.sendFile("/public/index.html", { root: rootDir });
 });
 
 export default router;

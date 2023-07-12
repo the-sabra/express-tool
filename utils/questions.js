@@ -1,6 +1,5 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
-import * as emoji from "node-emoji";
 
 export let getProjectName = async () => {
   const answer = await inquirer.prompt({
@@ -16,7 +15,7 @@ export let selectLanguage = async () => {
   const answer = await inquirer.prompt({
     name: "language",
     type: "list",
-    message: `what is the language you need to use ${emoji.get("thinking")} 🤔`,
+    message: `what is the language you need to use 🤔`,
     choices: [chalk.yellow("JavaScript"), chalk.blueBright("TypeScript")],
   });
 

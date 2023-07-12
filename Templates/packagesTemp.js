@@ -3,7 +3,7 @@ export let packageCjs = {
   version: "0.0.1",
   private: true,
   scripts: {
-    "start:dev": "nodemon app.js",
+    dev: "nodemon app.js",
     start: "node app.js ",
   },
   dependencies: {
@@ -20,7 +20,7 @@ export let packageEjs = {
   private: true,
   type: "module",
   scripts: {
-    "start:dev": "nodemon app.js",
+    dev: "nodemon app.js",
     start: "node app.js ",
   },
   dependencies: {
@@ -37,8 +37,9 @@ export let packageTs = {
   version: "0.0.1",
   private: true,
   scripts: {
-    "start:dev": "nodemon app.ts",
-    start: "node  ./dist/app.js ",
+    start: "node ./dist/app.js",
+    build: "tsc -p",
+    dev: "nodemon ./src/app.ts",
   },
   dependencies: {
     express: "~4.17.1",
@@ -47,6 +48,7 @@ export let packageTs = {
   devDependencies: {
     nodemon: "^3.0.1",
     typescript: "^4.7.4",
+    "@types/cors": "^2.8.13",
     "ts-node": "^10.0.0",
     "@types/node": "18.15.11",
     "@types/express": "^4.17.13",
