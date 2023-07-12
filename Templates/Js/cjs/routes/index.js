@@ -1,7 +1,7 @@
-var express = require("express");
+const express = require("express");
 const rootDir = require("../util/path");
 const path = require("path");
-var router = express.Router();
+const router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {

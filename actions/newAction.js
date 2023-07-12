@@ -33,6 +33,7 @@ export let newAction = async (name, options) => {
     //check options get or not
     if (Object.keys(options).length === 0) {
       language = await selectLanguage();
+      moduleType = "cjs";
     }
     if (options.javascript && options.ECMAScript) {
       language = "js"; //set language to js

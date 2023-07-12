@@ -7,7 +7,6 @@ export let packageCjs = {
     start: "node app.js ",
   },
   dependencies: {
-    debug: "~2.6.9",
     express: "~4.17.1",
     cors: "^2.8.5",
   },
@@ -25,7 +24,6 @@ export let packageEjs = {
     start: "node app.js ",
   },
   dependencies: {
-    debug: "~2.6.9",
     express: "~4.17.1",
     cors: "^2.8.5",
   },
@@ -43,7 +41,6 @@ export let packageTs = {
     start: "node  ./dist/app.js ",
   },
   dependencies: {
-    debug: "~2.6.9",
     express: "~4.17.1",
     cors: "^2.8.5",
   },
