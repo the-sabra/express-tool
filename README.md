@@ -31,7 +31,7 @@ This generator can also be further configured with the following command line fl
 -     -p, --package <type> to choose package manager you use
 -     -js, --javascript  to create a project using JavaScript
 -     -ts, --typescript  to create a project using TypeScript
--     -mjs, --ECMAScript to create project in JavaScript with ECMAScript Modules (JavaScript only)
+-     -js -mjs [project-name] option make js with ECMAScript Module.
 
 ## License
 
