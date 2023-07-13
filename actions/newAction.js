@@ -100,7 +100,9 @@ export let newAction = async (name, options) => {
     console.log(
       ` run this command ${chalk.yellow(
         `cd ${projectName}`
-      )}\n you can run project in dev mode by ${chalk.yellow("npm run dev")}`
+      )}\n you can run project in dev mode by ${chalk.yellow(
+        `${packageManger} run dev`
+      )}`
     );
   } catch (error) {
     console.error(`some thing wrong 🤕 ${error}`);
