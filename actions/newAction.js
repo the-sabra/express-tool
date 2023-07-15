@@ -105,7 +105,8 @@ export let newAction = async (name, options) => {
       )}`
     );
   } catch (error) {
-    console.error(`some thing wrong 🤕 ${error}`);
-    process.exit(1);
+    // console.error(`some thing wrong 🤕 ${error}`);
+    // process.exit(1);
+    throw error
   }
 };

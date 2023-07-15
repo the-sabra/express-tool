@@ -3,7 +3,7 @@ import { exec } from "child_process";
 // this function to execute npm install command
 export async function npmInstaller(dir) {
   const installCommand = "npm install";
-  const timeout = 40000; // Timeout in milliseconds (40 seconds)
+  const timeout = 30000; // Timeout in milliseconds (30 seconds)
 
   return new Promise((resolve, reject) => {
     const installProcess = exec(installCommand, { cwd: dir }, (error) => {
@@ -29,7 +29,7 @@ export async function npmInstaller(dir) {
 // this function to execute pnpm install command
 export async function pnpmInstaller(dir) {
   const installCommand = "pnpm install";
-  const timeout = 40000; // Timeout in milliseconds (40 seconds)
+  const timeout = 30000; // Timeout in milliseconds (30 seconds)
 
   return new Promise((resolve, reject) => {
     const installProcess = exec(installCommand, { cwd: dir }, (error) => {
@@ -55,7 +55,7 @@ export async function pnpmInstaller(dir) {
 // this function to execute yarn install command
 export async function yarnInstaller(dir) {
   const installCommand = "yarn install";
-  const timeout = 40000; // Timeout in milliseconds (40 seconds)
+  const timeout = 30000; // Timeout in milliseconds (30 seconds)
 
   return new Promise((resolve, reject) => {
     const installProcess = exec(installCommand, { cwd: dir }, (error) => {
@@ -81,7 +81,7 @@ export async function yarnInstaller(dir) {
 // this function to execute npm update command
 export async function npmUpdater(dir) {
   const updateCommand = "npm update";
-  const timeout = 40000; // Timeout in milliseconds (40 seconds)
+  const timeout = 30000; // Timeout in milliseconds (30 seconds)
 
   return new Promise((resolve, reject) => {
     const installProcess = exec(updateCommand, { cwd: dir }, (error) => {
@@ -132,7 +132,7 @@ export async function pnpmUpdater(dir) {
 // this function to execute yarn update command
 export async function yarnUpdater(dir) {
   const updateCommand = "yarn up";
-  const timeout = 40000; // Timeout in milliseconds (40 seconds)
+  const timeout = 30000; // Timeout in milliseconds (30 seconds)
 
   return new Promise((resolve, reject) => {
     const installProcess = exec(updateCommand, { cwd: dir }, (error) => {
