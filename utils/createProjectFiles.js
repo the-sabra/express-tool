@@ -2,18 +2,20 @@ import * as fs from "fs/promises";
 import ora, { spinners } from "ora";
 import path from "path";
 import rootDir from "../rootDir.js";
+import isOnline from "is-online";
 import {
   npmInstaller,
   yarnInstaller,
   pnpmInstaller,
+  pnpmUpdater,
+  npmUpdater,
+  yarnUpdater,
 } from "./executeCommands.js";
 
 const TEMPLATE_DEFAULT_PATH_JS = (moduleType) => {
   return path.join(rootDir, "Templates", "Js", moduleType);
 };
 const TEMPLATE_DEFAULT_PATH_TS = path.join(rootDir, "Templates", "Ts");
-
-const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 export let projectFiles = async (
   projectName,
@@ -24,10 +26,10 @@ export let projectFiles = async (
 ) => {
   const CreatingSpinner = ora("creating project...");
   const installingSpinner = ora("installing dependencies...");
+  const updatingSpinner = ora("updating dependencies...");
   try {
-    CreatingSpinner.start();
-
     //create project directories and files
+    CreatingSpinner.start();
     if (language == "js") {
       await createTemplate(TEMPLATE_DEFAULT_PATH_JS(moduleType), projectName);
     } else if (language == "ts") {
@@ -35,27 +37,62 @@ export let projectFiles = async (
     }
 
     //to create a new package.json file
-    await packageJsonFile(projectName, packageObject);
-
+    await packageJsonGenerator(projectName, packageObject);
     CreatingSpinner.succeed("files created");
 
+    //  install and updating dependencies
     installingSpinner.start();
-    if (packageManger === "npm") {
-      await npmInstaller(projectName);
-    } else if (packageManger === "yarn") {
-      await yarnInstaller(projectName);
-    } else if (packageManger === "pnpm") {
-      await pnpmInstaller(projectName);
+    //check if the user has an Internet connection
+    if ((await isOnline()) === true) {
+      switch (packageManger) {
+        case "npm":
+          await npmInstaller(projectName);
+          break;
+        case "yarn":
+          await yarnInstaller(projectName);
+          break;
+        case "pnpm":
+          await pnpmInstaller(projectName);
+          break;
+        default:
+          throw new Error("wrong package 🤕");
+      }
+    } else {
+      installingSpinner.fail("There is no internet connection🤕");
+      process.exit(1);
     }
     installingSpinner.succeed("dependencies installed 🔥");
+
+    updatingSpinner.start();
+    //check if the user has an Internet connection
+    if ((await isOnline()) === true) {
+      switch (packageManger) {
+        case "npm":
+          await npmUpdater(projectName);
+          break;
+        case "yarn":
+          await yarnUpdater(projectName);
+          break;
+        case "pnpm":
+          await pnpmUpdater(projectName);
+          break;
+        default:
+          throw new Error("wrong package 🤕");
+      }
+    } else {
+      updatingSpinner.fail("There is no internet connection.🤕");
+      process.exit(1);
+    }
+    updatingSpinner.succeed("dependencies updated 😎");
   } catch (error) {
     CreatingSpinner.stop();
     installingSpinner.stop();
+    updatingSpinner.stop();
     throw error;
   }
 };
 
-async function packageJsonFile(dir, packageObject) {
+async function packageJsonGenerator(dir, packageObject) {
   try {
     await fs.writeFile(
       dir + "/package.json",
@@ -66,7 +103,6 @@ async function packageJsonFile(dir, packageObject) {
   }
 }
 
-// ** [TODO] ** make this function to read dir and  write data from template to project file
 async function createTemplate(templatePath, projectPath) {
   try {
     const files = await fs.readdir(templatePath);

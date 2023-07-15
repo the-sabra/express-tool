@@ -1,6 +1,6 @@
 {
   "name": "express-tool",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "author": "omar sabra <omarsabra509@gmail.com>",
   "keywords": [
     "command-line",
@@ -29,6 +29,7 @@
     "chalk": "^4.1.2",
     "commander": "^11.0.0",
     "inquirer": "^8.2.0",
+    "is-online": "^10.0.0",
     "ora": "^6.3.1"
   }
 }

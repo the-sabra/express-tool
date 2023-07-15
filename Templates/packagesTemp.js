@@ -1,3 +1,4 @@
+//These objects generate the base package.json file for every case.
 export const packageCjs = {
   name: "",
   version: "0.0.1",

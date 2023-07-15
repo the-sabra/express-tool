@@ -7,7 +7,14 @@ You can run the command in `et` to be simple. 😊
 ## installation
 
 ```sh
+#npm
 npm install -g express-tool
+
+#yarn
+yarn global add express-tool
+
+#pnpm
+pnpm add -g express-tool
 ```
 
 ## Quick start
@@ -15,23 +22,26 @@ npm install -g express-tool
 go to the directory you need to generate the project and execute this command
 
 ```bash
-new|n [options] [project-name]
+et new
 ```
+And go through the options.
 
-
-**NOTE:** You can only use new commands, and he gives you some questions. 
-
+<p align="center" >
+<img alt="explain" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHcxbXBwd3d3NW0xeG03Y2NwMnliemswa2VrYTd5anltOHp5NGhociZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kitDmczii7YcQnrGfb/giphy.gif">
+<br/>
+</p> 
 
 ## Command Line Options
 
 This generator can also be further configured with the following command line flags.
 
-## new | n
+##  new|n [options] [project-name]
 
 -     -p, --package <type> to choose package manager you use
 -     -js, --javascript  to create a project using JavaScript
 -     -ts, --typescript  to create a project using TypeScript
--     -mjs, --ECMAScript to create project in JavaScript with ECMAScript Modules (JavaScript only)
+-     -js -mjs [project-name] option make js with ECMAScript Module.
+
 
 ## License
 
