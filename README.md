@@ -7,7 +7,14 @@ You can run the command in `et` to be simple. 😊
 ## installation
 
 ```sh
+#npm
 npm install -g express-tool
+
+#yarn
+yarn global add express-tool
+
+#pnpm
+pnpm add -g express-tool
 ```
 
 ## Quick start
