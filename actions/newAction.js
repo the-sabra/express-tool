@@ -8,6 +8,7 @@ import {
 import { createProjectFiles } from "../lib/createProjectFiles.js";
 import {
   getProjectName,
+  installDeps,
   selectLanguage,
   selectModuleType,
   selectPackage,
@@ -20,6 +21,8 @@ let moduleType;
 let packageManger;
 //This variable stores the object create file function.
 let packageUse;
+// whether the user wishes to install the depencies
+let installDepsBool;
 export let newAction = async (name, options) => {
   try {
     if (!name) {
@@ -89,12 +92,15 @@ export let newAction = async (name, options) => {
       process.exit(1);
     }
 
+    installDepsBool = await installDeps();
+
     await createProjectFiles(
       projectName,
       packageManger,
       language,
       packageUse,
-      moduleType
+      moduleType,
+      installDepsBool
     );
 
     console.log(
