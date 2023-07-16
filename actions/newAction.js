@@ -1,17 +1,17 @@
-import { projectFiles } from "../utils/createProjectFiles.js";
-import { existsSync } from "fs";
 import chalk from "chalk";
+import { existsSync } from "fs";
+import {
+  packageCjs,
+  packageEjs,
+  packageTs,
+} from "../Templates/packagesTemp.js";
+import { createProjectFiles } from "../lib/createProjectFiles.js";
 import {
   getProjectName,
   selectLanguage,
-  selectPackage,
   selectModuleType,
-} from "../utils/questions.js";
-import {
-  packageCjs,
-  packageTs,
-  packageEjs,
-} from "../Templates/packagesTemp.js";
+  selectPackage,
+} from "../lib/questions.js";
 let projectName;
 let language;
 // Get the module type, which is either CommonJS or ECMAScript, from the options.
@@ -89,7 +89,7 @@ export let newAction = async (name, options) => {
       process.exit(1);
     }
 
-    await projectFiles(
+    await createProjectFiles(
       projectName,
       packageManger,
       language,
@@ -105,8 +105,7 @@ export let newAction = async (name, options) => {
       )}`
     );
   } catch (error) {
-    // console.error(`some thing wrong 🤕 ${error}`);
-    // process.exit(1);
-    throw error
+    console.error(`some thing wrong 🤕 ${error}`);
+    process.exit(1);
   }
 };
