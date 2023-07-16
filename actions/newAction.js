@@ -21,7 +21,7 @@ let moduleType;
 let packageManger;
 //This variable stores the object create file function.
 let packageUse;
-// whether the user wishes to install the depencies
+// whether the user wishes to install the dependencies
 let installDepsBool;
 export let newAction = async (name, options) => {
   try {
