@@ -31,5 +31,8 @@
     "inquirer": "^8.2.0",
     "is-online": "^10.0.0",
     "ora": "^6.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.45.0"
   }
 }
