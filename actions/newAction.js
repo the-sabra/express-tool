@@ -1,17 +1,18 @@
-import { projectFiles } from "../utils/createProjectFiles.js";
-import { existsSync } from "fs";
 import chalk from "chalk";
-import {
-  getProjectName,
-  selectLanguage,
-  selectPackage,
-  selectModuleType,
-} from "../utils/questions.js";
+import { existsSync } from "fs";
 import {
   packageCjs,
-  packageTs,
   packageEjs,
+  packageTs,
 } from "../Templates/packagesTemp.js";
+import { createProjectFiles } from "../lib/createProjectFiles.js";
+import {
+  getProjectName,
+  installDeps,
+  selectLanguage,
+  selectModuleType,
+  selectPackage,
+} from "../lib/questions.js";
 let projectName;
 let language;
 // Get the module type, which is either CommonJS or ECMAScript, from the options.
@@ -20,6 +21,8 @@ let moduleType;
 let packageManger;
 //This variable stores the object create file function.
 let packageUse;
+// whether the user wishes to install the depencies
+let installDepsBool;
 export let newAction = async (name, options) => {
   try {
     if (!name) {
@@ -89,12 +92,15 @@ export let newAction = async (name, options) => {
       process.exit(1);
     }
 
-    await projectFiles(
+    installDepsBool = await installDeps();
+
+    await createProjectFiles(
       projectName,
       packageManger,
       language,
       packageUse,
-      moduleType
+      moduleType,
+      installDepsBool
     );
 
     console.log(
@@ -105,8 +111,7 @@ export let newAction = async (name, options) => {
       )}`
     );
   } catch (error) {
-    // console.error(`some thing wrong 🤕 ${error}`);
-    // process.exit(1);
-    throw error
+    console.error(`some thing wrong 🤕 ${error}`);
+    process.exit(1);
   }
 };
